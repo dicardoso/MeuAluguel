@@ -1,9 +1,15 @@
 # Descrição
 
-Descreva sucintamente a funcionalidade adicionada ou modificada por este Pull Request.
+Descreva sucintamente a mudança feita por este Pull Request.
 
-## Tipo de Mudança
+## Aplicação Alvo
 
+- [ ] Frontend
+- [ ] Backend
+  
+## Tipo de Mudança 
+
+- [ ] Correção de Bug
 - [ ] Nova Funcionalidade
 - [ ] Melhoria de Funcionalidade Existente
 - [ ] Mudança na Interface do Usuário
