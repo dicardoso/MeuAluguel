@@ -1,18 +1,24 @@
 # Descrição
 
-Descreva de forma sucinta e clara as mudanças feitas neste Pull Request.
+Descreva sucintamente a mudança feita por este Pull Request.
 
-## Tipo de Mudança
+## Aplicação Alvo
 
-- [ ] Correção de bug
-- [ ] Nova funcionalidade
-- [ ] Melhoria de performance
+- [ ] Frontend
+- [ ] Backend
+  
+## Tipo de Mudança 
+
+- [ ] Correção de Bug
+- [ ] Nova Funcionalidade
+- [ ] Melhoria de Funcionalidade Existente
+- [ ] Mudança na Interface do Usuário
 - [ ] Outros: (especifique)
 
 ## Checklist
 
 - [ ] Meu código segue as diretrizes do estilo do projeto.
-- [ ] Eu adicionei testes para cobrir minhas mudanças.
+- [ ] Eu adicionei testes para cobrir minha mudança.
 - [ ] Todos os testes novos e existentes passaram.
 - [ ] Eu atualizei a documentação conforme necessário.
 
