@@ -1,75 +1,58 @@
-# Nuxt 3 Minimal Starter
+# Frontend do Sistema Meu Aluguel
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Este projeto é o frontend do Sistema de Gerenciamento de Contratos de Locação, uma aplicação web que permite aos usuários administrar contratos de locação de imóveis. Ele se comunica com a API desenvolvida em Spring Boot para fornecer uma interface amigável e eficiente para os locadores e locatários.
 
-## Setup
+## Funcionalidades
 
-Make sure to install the dependencies:
+- **Cadastro de Usuários**: Permite que novos usuários se registrem e sejam definidos como locatários.
+- **Cadastro de Propriedades**: Facilita a adição de novas propriedades ao sistema.
+- **Geração de Contratos**: Interface para criar novos contratos de locação, com pré-visualização e edição. 
+- **Renovação de Contratos**: Opção para renovar contratos existentes.
+- **Autenticação de Usuários**: Login e controle de acesso baseado em tokens JWT. 
+- **Dashboard**: Visão geral dos contratos, propriedades e usuários.
+- **Notificações**: Alertas e notificações para eventos importantes, como vencimento de contratos.
 
-```bash
-# npm
-npm install
+## Tecnologias Utilizadas
 
-# pnpm
-pnpm install
+- **Vue.js**: Framework JavaScript progressivo para construir interfaces de usuário.
+- **Nuxt.js**: Framework para Vue.js com suporte para renderização no lado do servidor (SSR).
+- **Pinia**: Gerenciamento de estado para aplicações Vue.js.
+- **Vuetify**: Biblioteca de componentes UI para Vue.js.
 
-# yarn
-yarn install
+## Estrutura do Projeto
 
-# bun
-bun install
+```plaintext
+front/
+│
+├── .nuxt/                  # Diretório gerado automaticamente pelo Nuxt.js
+├── components/             # Componentes Vue reutilizáveis
+├── node_modules/           # Dependências do projeto
+├── pages/                  # Páginas individuais da aplicação
+├── plugins/                # Plugins Vue
+├── public/                 # Arquivos estáticos públicos
+├── server/                 # Código do lado do servidor (Nuxt.js)
+├── .eslintrc.cjs           # Configuração do ESLint
+├── .gitignore              # Arquivos e diretórios ignorados pelo Git
+├── .prettierrc             # Configuração do Prettier
+├── nuxt.config.ts          # Configuração do Nuxt.js
+├── package.json            # Dependências do projeto e scripts
+├── tsconfig.json           # Configuração do TypeScript
+├── yarn.lock               # Arquivo de bloqueio do Yarn
+└── README.md               # Documentação do projeto
 ```
 
-## Development Server
+## Instalação e configuração
 
-Start the development server on `http://localhost:3000`:
+1. Compile o projeto usando Maven:
 
-```bash
-# npm
-npm run dev
+    ```bash
+    yarn install
+    ```
+2. Configure as variáveis de ambiente no arquivo .env.
+2. Execute a aplicação:
 
-# pnpm
-pnpm run dev
+    ```bash
+    yarn dev
+    ```
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+A aplicação estará disponível em `http://localhost:3000`.
