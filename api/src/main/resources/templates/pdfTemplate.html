@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+
+    <title>Contrato de Locação de Imóvel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 14px;
+        }
+        h3 {
+            text-align: center;
+            font-size: 20px;
+        }
+        h4 {
+            font-size: 18px;
+        }
+        h3, h4 {
+            color: #2c3e50;
+        }
+        p {
+            text-align: justify;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .signature-section {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+        }
+        .signature table{
+            margin-top: 30px;
+            background-color: transparent;
+        }
+        .signature td{
+            border: none;
+        }
+        .signature td p {
+            text-align: right;
+            margin: 5px 0 0 0;
+        }
+        .signature div {
+            display: inline-block;
+            padding-right: 10px;
+        }
+        .dash {
+            margin-bottom: 0;
+        }
+        table td:first-child {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<h3 th:text="'INSTRUMENTO PARTICULAR DE CONTRATO DE LOCAÇÃO DE IMÓVEL PARA FINS ' + ${#strings.toUpperCase(property.getType().getName())}"></h3>
+
+<h4>PARTES</h4>
+<table>
+    <tr>
+        <th colspan="2">LOCADOR</th>
+    </tr>
+    <tr>
+        <td>Nome</td>
+        <td th:text="${owner.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Endereço</td>
+        <td th:text="${owner.getAddress()}"></td>
+    </tr>
+    <tr>
+        <th colspan="2">LOCATÁRIO</th>
+    </tr>
+    <tr>
+        <td>Nome</td>
+        <td th:text="${renter.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Endereço</td>
+        <td th:text="${renter.getAddress()}"></td>
+    </tr>
+    <tr>
+        <td>CPF</td>
+        <td th:text="${renterCpf}"></td>
+    </tr>
+</table>
+
+<h4>OBJETO</h4>
+<p th:text="'O LOCADOR dá em locação ao LOCATÁRIO o imóvel para fins residenciais na ' + ${property.getAddress()} + ' nº ' + ${property.getNumber()} + ' – ' + ${property.getComplement()} + ' no bairro ' + ${property.getNeighborhood}+ ', nesta capital, edificada em terreno próprio, encontrando-se o imóvel ora locado em ótimas condições físicas conforme vistoria no ato da assinatura do presente contrato.'">
+</p>
+
+<h4>PRAZO</h4>
+<p>
+    <span>O prazo de locação é fixado em <strong>1 ANO</strong>, iniciando-se no dia </span>
+    <strong th:text="${startDate}"></strong>
+    <span> e terminando no dia </span>
+    <strong th:text="${endDate}"></strong>.
+    <span>A renovação do Contrato <strong>não</strong> será imediata, caso não haja anuência do LOCADOR. Este informará ao LOCATÁRIO sua rescisão por escrito no prazo de 30 (trinta) dias anteriores ao término do Contrato.</span>
+</p>
+
+<h4>VALOR DO CONTRATO</h4>
+<p>
+    <span>O valor do aluguel mensal será igual a R$ </span>
+    <strong th:text="${value + ' ('+ valueInWords + ')'}"></strong>.
+    <span>O aluguel será corrigido anualmente de acordo com o índice de reajuste do Governo. O aluguel vencerá no dia </span>
+    <strong th:text="${contract.maturity_date} + ' de cada mês.'"></strong>
+</p>
+<p>O atraso no pagamento de quaisquer parcelas provocará multa de 2% e juros de mora à razão de 12% ao ano. Os aluguéis serão pagos pelo LOCATÁRIO no endereço do LOCADOR. Além do aluguel mensal, o LOCATÁRIO <strong>pagará as despesas de energia e de água.</strong></p>
+
+<h4>DANOS</h4>
+<p>Quaisquer danos causados ao imóvel e/ou às suas instalações durante a locação, desde que por culpa do LOCATÁRIO, deverão ser reparados de forma satisfatória. Na hipótese de inadimplência, o LOCATÁRIO deverá ressarcir ao LOCADOR a indenização correspondente, corrigida com todos os acréscimos legalmente previstos, ou substituir as peças danificadas por outras de igual qualidade e valor.</p>
+
+<h4>OBRAS E BENFEITORIAS</h4>
+<p>Caberá ao LOCADOR o direito de realizar e reter quaisquer benfeitorias necessárias que vier a realizar no imóvel. Em se tratando de benfeitorias úteis, desde que autorizadas previamente pelo LOCADOR, estas serão incorporadas ao imóvel e aceitas desde já pelo LOCATÁRIO. Quanto às benfeitorias voluptuárias, o LOCATÁRIO poderá retirá-las, desde que não afetem a estrutura do imóvel.</p>
+
+<h4>OBRIGAÇÕES</h4>
+<p>O LOCATÁRIO se obriga a permitir ao LOCADOR examinar ou vistoriar o imóvel sempre que julgar necessário.</p>
+
+<h4>DESTINAÇÃO</h4>
+<p>O imóvel locado destina-se ao uso exclusivo do LOCATÁRIO para fins residenciais, sendo vedada qualquer mudança deste contrato. A sublocação será de inteira responsabilidade do LOCATÁRIO.</p>
+
+<h4>INDENIZAÇÃO</h4>
+<p>Em caso de rescisão antecipada deste contrato, o LOCATÁRIO deverá pagar ao LOCADOR, a título de indenização, o valor equivalente a 2 (dois) meses do aluguel vigente na data da rescisão, atendida a proporcionalidade prevista no artigo 4º da Lei 8.245/91 c/c artigo 924 do Código Civil.</p>
+
+<h4>VANTAGENS SUPERVENIENTES</h4>
+<p>A locação estará sempre sujeita às disposições do Código Civil Brasileiro e da Lei 8.245/91, ficando assegurado ao LOCATÁRIO todos os direitos e garantias conferidos pela legislação vigente durante a locação.</p>
+
+<h4>FORO E ELEIÇÃO</h4>
+<p>As partes elegem o Foro da Comarca de João Pessoa, Paraíba, como único competente para toda e qualquer demanda que verse sobre a locação, renunciando a qualquer outro, por mais privilegiado que seja.</p>
+
+<p>E por estarem assim justos e contratados, firmam o presente instrumento em 2 (duas) vias de igual teor e forma, para um só efeito, na presença de 2 (duas) testemunhas também signatárias, comprometendo-se por si, seus herdeiros e sucessores, a cumprir fielmente o presente contrato.</p>
+
+<div class="signature-section">
+    <div class="signature">
+        <div>
+            <span>João Pessoa, </span>
+            <span th:text="${signDate}"></span>
+        </div>
+        <table>
+            <tr>
+                <td style="text-align: center;">
+                    <p class="dash">___________________________________</p>
+                    <p th:text="${#strings.toUpperCase(renter.getName())}"></p>
+                    <p>Locatário</p>
+                </td>
+                <td style="text-align: right;">
+                    <p class="dash">___________________________________</p>
+                    <p th:text="${#strings.toUpperCase(owner.getName())}"></p>
+                    <p>Locador</p>
+
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">
+                    <p class="dash">___________________________________</p>
+                    <p>TESTEMUNHA 1</p>
+                </td>
+                <td style="text-align: center;">
+                    <p class="dash">___________________________________</p>
+                    <p>TESTEMUNHA 2</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
