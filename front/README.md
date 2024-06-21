@@ -56,3 +56,10 @@ front/
     ```
 
 A aplicação estará disponível em `http://localhost:3000`.
+
+## Protótipos e Inspirações
+
+- Tela de login  
+![Tela de login](docs/image.png)
+- Dashboard   
+![alt text](docs/image-1.png)
