@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import Logo from '@/layouts/full/logo/Logo.vue';
-/* Login form */
-import LoginForm from '@/components/LoginForm.vue';
 </script>
 <template>
     <div class="authentication">
@@ -14,7 +11,7 @@ import LoginForm from '@/components/LoginForm.vue';
                                 <div class="d-flex justify-center mb-5">
                                     <Logo />
                                 </div>
-                                <!-- <div class="text-h6 text-medium-emphasis text-center mb-6">Your Social Campaigns</div> -->
+                                <div class="text-h6 text-medium-emphasis text-center mb-6">Your Social Campaigns</div>
                                 <LoginForm />
                                 <h6 class="text-subtitle-1  text-grey100 d-flex justify-center align-center mt-3">
                                     New to Spike?
