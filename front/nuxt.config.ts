@@ -8,7 +8,5 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   plugins: ['@/plugins/vuetify'],
-  eslint: {
-    // options here
-  }
+  css: ['vuetify/styles', '@/assets/styles/main.scss'],
 })

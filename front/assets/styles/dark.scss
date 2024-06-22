@@ -1,0 +1,11 @@
+.v-theme--dark{
+  .v-navigation-drawer {
+    background-color: #4e4e4e;
+    a {
+      color: white !important;
+    }
+  }
+  .v-list-item--active {
+    background-color: #818181;
+  }
+}
