@@ -41,7 +41,7 @@
       <v-divider class="mx-2 mb-1" />
       <template #append>
         <v-container class="px-1">
-          <v-card  rounded="pill" class="d-flex w-100" @click="()=>{}">
+          <v-card  rounded="pill" class="d-flex justify-space-between w-100" @click="()=>{}">
             <v-avatar size="52" class="d-flex align-center border-lg" :color="currentUser.color">
               <v-img
                 v-if="currentUser.avatar"
@@ -56,26 +56,29 @@
               <span class="font-weight-bold">{{ currentUser.name }}</span>
               <span class="text-caption">{{ currentUser.role }}</span>
             </div>
+            <v-card-actions>
+              <v-btn density="comfortable" variant="tonal" icon="mdi-theme-light-dark" @click="toggleTheme"></v-btn>
+            </v-card-actions>
           </v-card>
         </v-container>
         <v-divider class="mx-2 mb-1" />
         <v-list>
-        <v-list-item-group>
-          <v-list-item
-            v-for="(item, index) in footerMenuItems"
-            :key="index"
-            :prepend-icon="item.icon"
-            :to="item.to"
-            :disabled="item.disable"
-            class="text-black"
-            rounded="xl"
-          >
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
+          <v-list-item-group>
+            <v-list-item
+              v-for="(item, index) in footerMenuItems"
+              :key="index"
+              :prepend-icon="item.icon"
+              :to="item.to"
+              :disabled="item.disable"
+              class="text-black"
+              rounded="xl"
+            >
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
       </template>
     </v-navigation-drawer>
     <v-main>
@@ -87,21 +90,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
+import { useTheme } from 'vuetify'
 
-const drawer = ref(true);
+const theme = useTheme()
+
+const drawer = ref(true)
 
 const menuItems = [
   { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', to: '/', disable: false },
   { title: 'Contratos', icon: 'mdi-file-document-outline', to: '/contratos', disable: true },
   { title: 'Propriedades', icon: 'mdi-office-building-marker-outline', to: '/propriedades', disable: true },
   { title: 'Pessoas', icon: 'mdi-account-group-outline', to: '/pessias', disable: true },
-];
+]
 const footerMenuItems = [
   { title: 'Configuração', icon: 'mdi-tune', to: '/configurar', disable: true },
   { title: 'Sair', icon: 'mdi-logout', to: '/logout', disable: true },
-];
+]
 const currentUser = reactive({name: 'Maria Joana', role: 'Administrador', avatar: 'https://randomuser.me/api/portraits/women/28.jpg', color: '#D95030'})
+function toggleTheme () {
+  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+}
 </script>
 
 <style>
