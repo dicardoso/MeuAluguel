@@ -98,10 +98,10 @@ const theme = useTheme()
 const drawer = ref(true)
 
 const menuItems = [
-  { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', to: '/', disable: false },
+  { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', to: '/dashboard', disable: false },
   { title: 'Contratos', icon: 'mdi-file-document-outline', to: '/contratos', disable: true },
   { title: 'Propriedades', icon: 'mdi-office-building-marker-outline', to: '/propriedades', disable: true },
-  { title: 'Pessoas', icon: 'mdi-account-group-outline', to: '/pessias', disable: true },
+  { title: 'Pessoas', icon: 'mdi-account-group-outline', to: '/pessoas', disable: true },
 ]
 const footerMenuItems = [
   { title: 'Configuração', icon: 'mdi-tune', to: '/configurar', disable: true },
