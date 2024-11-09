@@ -4,6 +4,7 @@ import com.example.meualuguel.dtos.user.UserResponseDTO;
 import com.example.meualuguel.models.User;
 import com.example.meualuguel.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +32,9 @@ public class UserController {
     }
 
     @GetMapping("/{user_id}")
-    public Optional<User> getStatusById(@PathVariable Long user_id) {
-        return repository.findById(user_id);
+    public ResponseEntity<User> getUserById(@PathVariable Long user_id) {
+        Optional<User> user = userService.findById(user_id);
+        return user.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }
