@@ -1,5 +1,10 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      baseUrl: 'http://localhost:8080/api',
+    },
+  },
   build: {
     transpile: ['vuetify'],
   },
@@ -8,6 +13,6 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
-  plugins: ['@/plugins/vuetify'],
+  plugins: ['@/plugins/vuetify', '@/plugins/maska'],
   css: ['vuetify/styles', '@/assets/styles/main.scss'],
 })

@@ -1,6 +1,7 @@
 // Vuetify
 import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
+import { pt } from 'vuetify/locale'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import { createVuetify, type ThemeDefinition } from 'vuetify'
 import * as components from 'vuetify/components'
@@ -37,6 +38,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     ssr: true,
     components,
     directives,
+    locale: {
+      locale: 'pt',
+      messages: { pt },
+    },
     theme: {
       defaultTheme: 'light',
       themes: {

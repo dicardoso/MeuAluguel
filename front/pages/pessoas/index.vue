@@ -1,3 +1,3 @@
 <template>
-  Pessoas
+  <pessoas-list-table></pessoas-list-table>
 </template>
