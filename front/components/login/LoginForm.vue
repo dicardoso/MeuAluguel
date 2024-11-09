@@ -4,18 +4,18 @@
             <span class="bg-surface py-3 text-subtitle-1 text-grey-darken-1">Plataforma de Gerênciamento de Contratos</span>
         </div>
     </div>
-    <div>
+    <v-form @submit.prevent="onLogin">
         <v-row class="mb-3">
             <v-col cols="12">
                 <v-label class="font-weight-medium mb-1">Usuário</v-label>
-                <v-text-field variant="outlined" hide-details color="primary"></v-text-field>
+                <v-text-field variant="outlined" color="primary" :rules="[rules.required]"></v-text-field>
             </v-col>
             <v-col cols="12">
                 <v-label class="font-weight-medium mb-1">Senha</v-label>
                 <v-text-field 
                     variant="outlined"
                     color="primary"
-                    hide-details
+                    :rules="[rules.required]"
                     :type="showPass ? 'password' : 'text'"
                     :append-inner-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                     @click:append-inner="showPass = !showPass"
@@ -45,10 +45,16 @@
                 </v-btn>
             </v-col>
         </v-row>
-    </div>
+    </v-form>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
+import useValidationRules from '@/composables/useValidationRules'
 
+const { rules } = useValidationRules()
 const showPass = ref(true)
+
+function onLogin() {
+    navigateTo('/dashboard')
+}
 </script>

@@ -99,9 +99,9 @@ const drawer = ref(true)
 
 const menuItems = [
   { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', to: '/dashboard', disable: false },
-  { title: 'Contratos', icon: 'mdi-file-document-outline', to: '/contratos', disable: true },
-  { title: 'Propriedades', icon: 'mdi-office-building-marker-outline', to: '/propriedades', disable: true },
-  { title: 'Pessoas', icon: 'mdi-account-group-outline', to: '/pessoas', disable: true },
+  { title: 'Contratos', icon: 'mdi-file-document-outline', to: '/contratos', disable: false },
+  { title: 'Propriedades', icon: 'mdi-office-building-marker-outline', to: '/propriedades', disable: false },
+  { title: 'Pessoas', icon: 'mdi-account-group-outline', to: '/pessoas', disable: false },
 ]
 const footerMenuItems = [
   { title: 'Configuração', icon: 'mdi-tune', to: '/configurar', disable: true },
