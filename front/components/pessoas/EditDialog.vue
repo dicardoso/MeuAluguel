@@ -1,0 +1,116 @@
+<template>
+    <v-dialog v-model="editDialog" max-width="700px">
+      <v-card class="px-2">
+        <v-card-title class="d-flex align-center justify-space-between">
+            <span>{{ dialogProps.item ? 'Editar Usuário' : 'Novo Usuário' }}</span>
+            <v-btn
+                id="btn-close-dialog"
+                icon
+                flat
+                :disabled="loading"
+                @click="closeDialog"
+            >
+                <v-icon> mdi-close </v-icon>
+            </v-btn>
+        </v-card-title>
+        <v-divider />
+        <v-card-text>
+          <v-form ref="userForm" v-model="isFormValid">
+            <v-row class="mt-2 ga-3">
+                <v-text-field v-model="form.name" label="Nome" :rules="[rules.required]" required></v-text-field>
+                <v-text-field v-model="form.registry" label="CPF" v-maska="'###.###.###-##'" :rules="[rules.required, rules.isCpf]" required></v-text-field>
+            </v-row>
+            <v-row class="mt-2 ga-3">
+                <v-text-field v-model="form.email" label="Email" :rules="[rules.email]"></v-text-field>
+                <v-text-field v-model="form.phone" label="Telefone"></v-text-field>
+            </v-row>
+            <v-row class="mt-2 ga-3">
+                <v-text-field v-model="form.address" label="Endereço"></v-text-field>
+            </v-row>
+            <v-row class="mt-2 ga-3">
+                <v-select v-model="form.profile" :items="profiles" item-title="name" item-value="id" label="Perfil"></v-select>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-divider />
+        <v-card-actions>
+          <v-btn variant="outlined" @click="clear">Limpar</v-btn>
+          <v-btn :disabled="!isFormValid" variant="flat" color="green" @click="submit">Salvar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+</template>
+<script setup>
+import { ref, reactive, watch } from 'vue'
+import { useUserService } from '@/services/users'
+
+const { createUser, updateUser } = useUserService()
+
+const emit = defineEmits(['close-dialog', 'reload-table'])
+const dialogProps = defineProps({
+    dialog: {
+        type: Boolean,
+        default: false
+    },
+    item: {
+        type: Object,
+        default: () => {}
+    },
+})
+const editDialog = ref(false);
+const isFormValid = ref(false);
+const rules = {
+  required: v => !!v || 'Campo obrigatório',
+  email: v => /.+@.+\..+/.test(v) || 'Email inválido',
+  isCpf: v => v.length === 14 || 'CPF Inválido',
+};
+const profiles = ref([{id: 1, name: 'Locatário'}, {id: 2, name: 'Locador'}])
+const form = ref({
+  id: null,
+  name: '',
+  registry: '',
+  email: '',
+  phone: '',
+  address: '',
+  is_active: false,
+  profile_id: null
+});
+
+watch(
+  () => dialogProps.dialog,
+  (value) => {
+    if (value) {
+        editDialog.value = value
+        console.log(form.value)
+    }
+  },
+)
+watch(
+  () => dialogProps.item,
+  (value) => {
+    form.value = { ...dialogProps.item }
+  },
+)
+
+function closeDialog() {
+    editDialog.value = false
+    emit('close-dialog')
+}
+function clear() {
+    form.value = Object.assign(dialogProps.item, {})
+}
+function submit() {
+    if(form.value.id) {
+      updateUser(form.value.id, form.value).then(({data}) => {
+        closeDialog()
+        emit('reload-table')
+
+      })
+    } else {
+      createUser(form.value).then(({data}) => {
+        closeDialog()
+        emit('reload-table')
+      })
+    }
+}
+</script>

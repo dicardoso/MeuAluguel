@@ -1,9 +1,9 @@
 <template>
-    <h1>Lista de Usuários</h1>
     <v-data-table
         v-model:sort-by="sortBy"
         :headers="headers"
         :items="users"
+        :loading="loading"
         item-value="id"
         class="elevation-1"
     >
@@ -33,8 +33,18 @@
   
 <script setup>
 import { useUserService } from '@/services/users'
+
+const emit = defineEmits(['open-dialog', 'table-loaded'])
+const listProps = defineProps({
+    reloadTable: {
+        type: Boolean,
+        default: false
+    },
+})
+
 const { getUser } = useUserService()
 const users = ref([]);
+const loading = ref(false);
 const sortBy = ref([{ key: 'id', order: 'asc' }])
 const headers = [
     { title: 'ID', value: 'id', sortable: true },
@@ -49,14 +59,25 @@ const headers = [
 ];
 
 function initialize() {
+    loading.value = true
     getUser({sort: 'id'}).then((data) => {
-        console.log(data)
         users.value = data
+        emit('table-loaded')
+    }).finally(() => {
+        loading.value = false
     })
 }
 function openDialog(item) {
-    console.log(item)
+    emit('open-dialog', item)
 }
+watch(
+  () => listProps.reloadTable,
+  (value) => {
+    if (value) {
+        initialize()
+    }
+  },
+)
 initialize()
 </script>
   

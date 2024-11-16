@@ -33,11 +33,19 @@ const light: ThemeDefinition = {
     warning: '#FB8C00',
   },
 }
+const defaults = {
+  VCard: {
+    VTextField: { variant: 'outlined' },
+    VSelect: { variant: 'outlined' },
+    VAutocomplete: { variant: 'outlined' },
+  },
+}
 export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
     ssr: true,
     components,
     directives,
+    defaults,
     locale: {
       locale: 'pt',
       messages: { pt },
