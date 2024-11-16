@@ -2,7 +2,7 @@
     <v-dialog v-model="editDialog" max-width="700px">
       <v-card class="px-2">
         <v-card-title class="d-flex align-center justify-space-between">
-            <span>{{ dialogProps.item ? 'Editar Usuário' : 'Novo Usuário' }}</span>
+            <span>{{ dialogProps.item.id ? 'Editar Usuário' : 'Novo Usuário' }}</span>
             <v-btn
                 id="btn-close-dialog"
                 icon
@@ -10,15 +10,27 @@
                 :disabled="loading"
                 @click="closeDialog"
             >
-                <v-icon> mdi-close </v-icon>
+              <v-icon> mdi-close </v-icon>
             </v-btn>
         </v-card-title>
         <v-divider />
         <v-card-text>
           <v-form ref="userForm" v-model="isFormValid">
             <v-row class="mt-2 ga-3">
-                <v-text-field v-model="form.name" label="Nome" :rules="[rules.required]" required></v-text-field>
-                <v-text-field v-model="form.registry" label="CPF" v-maska="'###.###.###-##'" :rules="[rules.required, rules.isCpf]" required></v-text-field>
+                <v-text-field
+                  v-model="form.name"
+                  label="Nome"
+                  :rules="[rules.required]"
+                  required
+                ></v-text-field>
+                <v-text-field
+                  v-model="form.registry"
+                  label="CPF"
+                  v-maska="'###.###.###-##'"
+                  :rules="[rules.required, rules.isCpf]"
+                  :disabled="dialogProps.item.id"
+                  required
+                ></v-text-field>
             </v-row>
             <v-row class="mt-2 ga-3">
                 <v-text-field v-model="form.email" label="Email" :rules="[rules.email]"></v-text-field>
