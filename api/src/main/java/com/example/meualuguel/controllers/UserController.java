@@ -2,8 +2,10 @@ package com.example.meualuguel.controllers;
 
 import com.example.meualuguel.dtos.user.UserCreateDTO;
 import com.example.meualuguel.dtos.user.UserResponseDTO;
+import com.example.meualuguel.dtos.user.UserUpdateDTO;
 import com.example.meualuguel.models.User;
 import com.example.meualuguel.repositories.UserRepository;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,15 +41,23 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserCreateDTO data) {
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserCreateDTO data) {
         return ResponseEntity.ok(userService.save(data));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        if (userService.findById(id).isEmpty()) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTO data) {
+
+        Optional<User> existingUserOpt = userService.findById(id);
+        if (existingUserOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        user.setId(id);
-        return ResponseEntity.ok(userService.update(user));
+
+        User existingUser = existingUserOpt.get();
+
+        modelMapper.map(data, existingUser);
+
+        User updatedUser = userService.update(existingUser);
+
+        return ResponseEntity.ok(updatedUser);
     }
 }
