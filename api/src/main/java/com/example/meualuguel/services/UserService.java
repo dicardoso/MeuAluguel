@@ -28,7 +28,7 @@ public class UserService extends AbstractService<User, Long> {
     }
     public User save(UserCreateDTO data) {
         Profile profile = profileService.findById(data.getProfile_id())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Profile não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Profile não encontrado."));
 
         User user = modelMapper.map(data, User.class);
         user.setIs_active(true);
@@ -36,7 +36,7 @@ public class UserService extends AbstractService<User, Long> {
         try {
             return userRepository.save(user);
         } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Já existe um usuário com esse registry");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Já existe um usuário com esse registry.");
         }
     }
 }
