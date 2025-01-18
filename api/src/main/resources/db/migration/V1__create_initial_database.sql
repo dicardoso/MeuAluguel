@@ -49,13 +49,14 @@ CREATE TABLE users (
     address VARCHAR(255) NOT NULL,
     profile_id INT,
     is_active BOOLEAN NOT NULL,
-    CONSTRAINT fk_profile FOREIGN KEY (profile_id) REFERENCES profiles (id)
+    CONSTRAINT fk_profile FOREIGN KEY (profile_id) REFERENCES profiles (id),
+    CONSTRAINT unique_registry UNIQUE (registry)
 );
 INSERT INTO users (name, email, registry, phone, address, is_active, profile_id)
-VALUES ('Marcos Antônio Cardoso da Silva', 'macarddoso@bol.com.br', '45090289468', '(00) 1234-5678', 'Rua Dep. Sóstenes Pedro, 240 - Padre Zé',true,1),
+VALUES ('Marcos Cardoso', 'macarddoso@mail.com', '45090289468', '(00) 1234-5678', 'Rua de Teste',true,1),
        ('José', 'jose@mail.com', '12345678910', '(00) 1234-5678', 'Rua ',true,2),
-       ('Lucas', 'lucas@example.com', '12345678910', '(00) 1234-5678', 'Rua ',true,1),
-       ('Maria', 'maria@example.com', '12345678910', '(00) 1234-5678', 'Rua ',true,2);
+       ('Lucas', 'lucas@example.com', '12345678900', '(00) 1234-5678', 'Rua ',true,1),
+       ('Maria', 'maria@example.com', '12345678000', '(00) 1234-5678', 'Rua ',true,2);
 
 CREATE TABLE contracts (
        id SERIAL PRIMARY KEY,

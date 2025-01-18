@@ -1,5 +1,6 @@
 package com.example.meualuguel.models;
 
+import com.example.meualuguel.dtos.user.UserUpdateDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

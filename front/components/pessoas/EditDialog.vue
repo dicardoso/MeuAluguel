@@ -40,7 +40,8 @@
                 <v-text-field v-model="form.address" label="Endereço"></v-text-field>
             </v-row>
             <v-row class="mt-2 ga-3">
-                <v-select v-model="form.profile" :items="profiles" item-title="name" item-value="id" label="Perfil"></v-select>
+                <v-select v-model="form.profile_id" :items="profiles" item-title="name" item-value="id" label="Perfil"></v-select>
+                <v-switch v-if="form.id" v-model="form.is_active" label="Ativo?" color="success"></v-switch>
             </v-row>
           </v-form>
         </v-card-text>
@@ -71,6 +72,7 @@ const dialogProps = defineProps({
 })
 const editDialog = ref(false);
 const isFormValid = ref(false);
+const loading = ref(false);
 const rules = {
   required: v => !!v || 'Campo obrigatório',
   email: v => /.+@.+\..+/.test(v) || 'Email inválido',
@@ -93,14 +95,15 @@ watch(
   (value) => {
     if (value) {
         editDialog.value = value
-        console.log(form.value)
     }
   },
 )
 watch(
   () => dialogProps.item,
   (value) => {
-    form.value = { ...dialogProps.item }
+    if(value){
+      form.value = { ...dialogProps.item, profile_id: value.profile?.id }
+    }
   },
 )
 
