@@ -34,7 +34,7 @@ public class ContractController {
     @Autowired
     private PdfService pdfService;
 
-    @GetMapping("/")
+    @GetMapping()
     public List<ContractResponseDTO> getAll() {
         return contractService.getAllContracts();
     }

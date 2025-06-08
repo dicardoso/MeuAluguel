@@ -1,6 +1,7 @@
 package com.example.meualuguel.advice;
 
 import com.example.meualuguel.exceptions.ResourceNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,9 +32,18 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse(ex.getMessage()));
+    public ResponseEntity<ErrorResponseDTO> handleResourceNotFoundException(
+            ResourceNotFoundException ex, HttpServletRequest request) {
+
+        var response = new ErrorResponseDTO();
+        response.setError("Recurso não encontrado.");
+        response.setStatus(HttpStatus.NOT_FOUND.value());
+        response.setPath(request.getRequestURI());
+        response.setTimestamp(LocalDateTime.now());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Map<String, String>> handleIllegalStateException(IllegalStateException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse(ex.getMessage()));
