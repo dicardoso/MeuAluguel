@@ -10,7 +10,6 @@ import com.example.meualuguel.utils.CpfUtils;
 import com.example.meualuguel.utils.CurrencyUtils;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,6 @@ import org.thymeleaf.context.Context;
 
 import jakarta.validation.Valid;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
@@ -55,6 +53,12 @@ public class ContractController {
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/{contract_id}/cancel")
+    public ResponseEntity<ContractResponseDTO> cancelContract(@PathVariable Long contract_id) {
+        Optional<ContractResponseDTO> contractOpt = contractService.cancelContract(contract_id);
+        return contractOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{contract_id}/generate")

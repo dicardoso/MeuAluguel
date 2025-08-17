@@ -37,7 +37,6 @@ public class Contract {
     private User renter;
 
     private LocalDate start_date;
-    @Future(message = "end_date must be in the future")
     private LocalDate end_date;
     private LocalDate sign_date;
     @Min(value = 1)
