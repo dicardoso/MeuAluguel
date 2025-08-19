@@ -11,7 +11,7 @@
       </template>
       <v-list>
         <v-list-item v-for="(item, index) in menuItems" :key="index" :prepend-icon="item.icon" :to="item.to"
-          :disabled="item.disable" class="ma-1 text-black" rounded="xl">
+          :disabled="item.disable" class="ma-1 text-white" rounded="xl">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -37,7 +37,7 @@
         <v-divider class="mx-2 mb-1" />
         <v-list>
           <v-list-item v-for="(item, index) in footerMenuItems" :key="index" :prepend-icon="item.icon" :to="item.to"
-            :disabled="item.disable" class="text-black" rounded="xl">
+            :disabled="item.disable" class="text-white" rounded="xl">
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -77,10 +77,10 @@ function toggleTheme() {
 
 <style>
 .v-navigation-drawer {
-  background-color: #d3d3d3;
+  background-color: #162e4c;
 }
 
 .v-list-item--active {
-  background-color: #ffffff;
+  background-color: #223958;
 }
 </style>
