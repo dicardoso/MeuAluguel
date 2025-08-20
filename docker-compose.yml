@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: meu-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: meuAluguelDB
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: aluguelpz
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    mem_limit: 512M
+
+  api:
+    build: ./api
+    container_name: meu-api
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/meuAluguelDB
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: aluguelpz
+    ports:
+      - "8080:8080"
+    mem_limit: 600M
+
+  front:
+    build: ./front
+    container_name: meu-front
+    restart: always
+    depends_on:
+      - api
+    environment:
+      API_URL: http://api:8080
+    ports:
+      - "3000:3000"
+    mem_limit: 400M
+
+volumes:
+  postgres_data:
