@@ -2,13 +2,7 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --production
+RUN npm config set strict-ssl false
+RUN npm install
 COPY . .
-RUN npm run build
-
-# Etapa 2: runtime (server-side render)
-FROM node:20-alpine
-WORKDIR /app
-COPY --from=build /app ./
-EXPOSE 3000
-CMD ["node", ".output/server/index.mjs"]
+CMD ["npm", "run", "dev"]
