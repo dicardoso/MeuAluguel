@@ -1,14 +1,23 @@
-<template>
-  <v-row>
-    <dashboard-general-info />
-  </v-row>
-  <v-row>
-    <dashboard-notifications />
-    <dashboard-calendar-integration />
-    <dashboard-messages-and-announcements />
-  </v-row>
-</template>
+<script setup lang="ts">
+import { ref } from "vue";
+import GeneralInfo from "~/components/dashboard/GeneralInfo.vue";
+import ListTable from "~/components/dashboard/ListTable.vue";
 
-<script setup>
+const stats = [
+  { title: "Total de Imóveis", value: 12, icon: "mdi-home-city" },
+  { title: "Contratos Ativos", value: 35, icon: "mdi-file-document-check" },
+  { title: "Inquilinos Cadastrados", value: 50, icon: "mdi-account-group" },
+  { title: "Contratos Vencendo", value: 5, icon: "mdi-calendar-alert" },
+];
+
 
 </script>
+
+<template>
+  <v-container fluid>
+    <general-info />
+
+     <list-table />
+    
+  </v-container>
+</template>
