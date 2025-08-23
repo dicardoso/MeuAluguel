@@ -1,7 +1,8 @@
+const config = useRuntimeConfig()
 export const useUserService = () => {
     const getUser = async (params={}) => {
       try {
-        const { data, error } = await useFetch('http://localhost:8080/user', {params})
+        const { data, error } = await useFetch(`${config.public.baseUrl}/user`, {params})
         if (error.value) {
           throw new Error('Erro ao buscar os dados do usuário')
         }
@@ -13,7 +14,7 @@ export const useUserService = () => {
     }
     const createUser = async (item, params={}) => {
       try {
-        const { data, error } = await useFetch('http://localhost:8080/user', 
+        const { data, error } = await useFetch(`${config.public.baseUrl}/user`, 
           {
             method: 'POST', 
             body: item, 
@@ -31,7 +32,7 @@ export const useUserService = () => {
     }
     const updateUser = async (userId: number, item, params={}) => {
       try {
-        const { data, error } = await useFetch(`http://localhost:8080/user/${userId}`, 
+        const { data, error } = await useFetch(`${config.public.baseUrl}/user/${userId}`, 
           {
             method: 'PUT', 
             body: item, 
