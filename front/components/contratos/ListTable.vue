@@ -2,13 +2,19 @@
   <v-data-table
     v-model:sort-by="sortBy"
     :headers="headers"
-    :items="users"
+    :items="contracts"
     :loading="loading"
     item-value="id"
     class="elevation-1"
   >
-    <template #[`item.registry`]="{ item }">
-      <span> {{ applyMask(item.registry, '###.###.###-##') }} </span>
+    <template #[`item.property`]="{ item }">
+      {{ `${item.property?.address} - ${item.property?.complement}` || 'N/A' }}
+    </template>
+    <template #[`item.value`]="{ item }">
+      {{ `R$ ${formatCurrency(item.value)}` }}
+    </template>
+    <template #[`item.end_date`]="{ item }">
+      {{ data.format(item.end_date, 'DD/MM/YYYY') }}
     </template>
     <template #[`item.is_active`]="{ item }">
       <v-chip
@@ -18,26 +24,17 @@
         {{ item.is_active ? 'Ativo' : 'Inativo' }}
       </v-chip>
     </template>
-    <template #[`item.actions`]="{ item }">
-      <utils-tooltip>
-        <template #button>
-          <v-btn
-            density="comfortable"
-            variant="text"
-            icon="mdi-pencil-outline"
-            @click="openDialog(item)"
-          />
-        </template>
-        <template #text>
-          <span>Editar</span>
-        </template>
-      </utils-tooltip>
+    <template #item.actions="{ item }">
+      <contratos-action-buttons
+        :item="item"
+      />
     </template>
   </v-data-table>
 </template>
 
 <script setup>
-import { useUserService } from '@/services/users'
+import { useDate } from 'vuetify'
+import { useContractService } from '@/services/contracts'
 
 const emit = defineEmits(['open-dialog', 'table-loaded'])
 const listProps = defineProps({
@@ -47,26 +44,25 @@ const listProps = defineProps({
   },
 })
 
-const { getUser } = useUserService()
-const users = ref([])
+const { getContract } = useContractService()
+const data = useDate()
+const contracts = ref([])
 const loading = ref(false)
 const sortBy = ref([{ key: 'id', order: 'asc' }])
 const headers = [
   { title: 'ID', value: 'id', sortable: true },
-  { title: 'Nome', value: 'name', sortable: true },
-  { title: 'Registro', value: 'registry' },
-  { title: 'Email', value: 'email' },
-  { title: 'Telefone', value: 'phone' },
-  { title: 'Endereço', value: 'address' },
-  { title: 'Perfil', value: 'profile.name', sortable: true },
+  { title: 'Inquilino', value: 'renterName.name' },
+  { title: 'Endereço', value: 'property', sortable: true },
+  { title: 'Vencimento', value: 'end_date' },
+  { title: 'Valor', value: 'value' },
   { title: 'Status', value: 'is_active', sortable: true },
-  { title: 'Ações', value: 'actions' },
+  { title: 'Ações', value: 'actions', align: 'center', sortable: false, width: '180' },
 ]
 
 function initialize() {
   loading.value = true
-  getUser({ sort: 'id' }).then((data) => {
-    users.value = data
+  getContract({ sort: 'id' }).then((data) => {
+    contracts.value = data
     emit('table-loaded')
   }).finally(() => {
     loading.value = false

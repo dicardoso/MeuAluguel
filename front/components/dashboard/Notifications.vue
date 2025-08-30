@@ -3,7 +3,10 @@
     <v-card>
       <v-card-title>Notifications</v-card-title>
       <v-list>
-        <v-list-item v-for="(notification, index) in notifications" :key="index">
+        <v-list-item
+          v-for="(notification, index) in notifications"
+          :key="index"
+        >
           <v-list-item-content>
             <v-list-item-title>{{ notification.title }}</v-list-item-title>
             <v-list-item-subtitle>{{ notification.description }}</v-list-item-subtitle>

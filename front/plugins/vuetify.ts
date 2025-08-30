@@ -35,9 +35,13 @@ const light: ThemeDefinition = {
 }
 const defaults = {
   VCard: {
-    VTextField: { variant: 'outlined' },
+    VTextField: { variant: 'outlined', rounded: 'xl' },
     VSelect: { variant: 'outlined' },
     VAutocomplete: { variant: 'outlined' },
+    VCardTitle: { class: 'py-4 px-6' },
+    VCardActions: { class: 'py-4 px-6',
+      VBtn: { rounded: 'xl', variant: 'outlined' },
+    },
   },
 }
 export default defineNuxtPlugin((nuxtApp) => {
@@ -49,6 +53,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     locale: {
       locale: 'pt',
       messages: { pt },
+    },
+    date: {
+      locale: {
+        pt: 'pt-BR',
+      },
     },
     theme: {
       defaultTheme: 'light',

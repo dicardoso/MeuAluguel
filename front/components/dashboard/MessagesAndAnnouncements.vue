@@ -3,7 +3,10 @@
     <v-card>
       <v-card-title>Messages & Announcements</v-card-title>
       <v-list>
-        <v-list-item v-for="(message, index) in messages" :key="index">
+        <v-list-item
+          v-for="(message, index) in messages"
+          :key="index"
+        >
           <v-list-item-content>
             <v-list-item-title>{{ message.title }}</v-list-item-title>
             <v-list-item-subtitle>{{ message.content }}</v-list-item-subtitle>
