@@ -4,10 +4,10 @@ export const useApi = () => {
   const request = async <T>(
     url: string,
     options: {
-      method?: 'GET' | 'POST' | 'PUT' | 'DELETE',
-      body?: any,
+      method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
+      body?: any
       params?: Record<string, any>
-    } = {}
+    } = {},
   ): Promise<T | null> => {
     try {
       const { data, error } = await useFetch<T>(`${config.public.baseUrl}${url}`, {
@@ -21,7 +21,8 @@ export const useApi = () => {
       }
 
       return data.value as T
-    } catch (err) {
+    }
+    catch (err) {
       console.error('Erro na API:', err)
       return null
     }

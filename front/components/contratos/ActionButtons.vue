@@ -9,8 +9,15 @@
       color="orange"
       @click="generatePdf"
     >
-      <v-icon variant="text">mdi-file-pdf-box</v-icon>
-      <v-tooltip activator="parent" location="bottom">Gerar PDF</v-tooltip>
+      <v-icon variant="text">
+        mdi-file-pdf-box
+      </v-icon>
+      <v-tooltip
+        activator="parent"
+        location="bottom"
+      >
+        Gerar PDF
+      </v-tooltip>
     </v-btn>
 
     <v-btn
@@ -22,8 +29,15 @@
       color="orange"
       @click="changeContract"
     >
-      <v-icon variant="text">mdi-pencil</v-icon>
-      <v-tooltip activator="parent" location="bottom">Editar</v-tooltip>
+      <v-icon variant="text">
+        mdi-pencil
+      </v-icon>
+      <v-tooltip
+        activator="parent"
+        location="bottom"
+      >
+        Editar
+      </v-tooltip>
     </v-btn>
 
     <v-btn
@@ -35,8 +49,15 @@
       icon="mdi-autorenew"
       @click="openReniewDialog"
     >
-      <v-icon variant="text">mdi-autorenew</v-icon>
-      <v-tooltip activator="parent" location="bottom">Renovar</v-tooltip>
+      <v-icon variant="text">
+        mdi-autorenew
+      </v-icon>
+      <v-tooltip
+        activator="parent"
+        location="bottom"
+      >
+        Renovar
+      </v-tooltip>
     </v-btn>
 
     <v-btn
@@ -48,8 +69,15 @@
       icon="mdi-close"
       @click="cancelContract"
     >
-      <v-icon variant="text">mdi-close</v-icon>
-      <v-tooltip activator="parent" location="bottom">Cancelar</v-tooltip>
+      <v-icon variant="text">
+        mdi-close
+      </v-icon>
+      <v-tooltip
+        activator="parent"
+        location="bottom"
+      >
+        Cancelar
+      </v-tooltip>
     </v-btn>
     <contratos-renew-dialog
       :dialog="dialogRenew"
@@ -61,10 +89,10 @@
 
 <script setup lang="ts">
 const props = defineProps({
-    item: {
-        type: Object,
-        required: true
-    }
+  item: {
+    type: Object,
+    required: true,
+  },
 })
 
 const dialogRenew = ref(false)
@@ -74,14 +102,14 @@ function openReniewDialog() {
 }
 
 function generatePdf() {
-  console.log("📄 Gerar PDF:", props.item.id)
+  console.log('📄 Gerar PDF:', props.item.id)
 }
 
 function changeContract() {
-  console.log("✏️ Editar contrato:", props.item.id)
+  console.log('✏️ Editar contrato:', props.item.id)
 }
 
 function cancelContract() {
-  console.log("❌ Cancelar contrato:", props.item.id)
+  console.log('❌ Cancelar contrato:', props.item.id)
 }
 </script>

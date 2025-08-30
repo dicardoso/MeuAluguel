@@ -4,14 +4,14 @@
       <v-card-title>Upcoming Events</v-card-title>
       <v-card-text>
         <v-sheet height="600">
-        <v-calendar
-          ref="calendar"
-          v-model="today"
-          :events="events"
-          color="primary"
-          type="month"
-        ></v-calendar>
-      </v-sheet>
+          <v-calendar
+            ref="calendar"
+            v-model="today"
+            :events="events"
+            color="primary"
+            type="month"
+          />
+        </v-sheet>
       </v-card-text>
     </v-card>
   </v-container>

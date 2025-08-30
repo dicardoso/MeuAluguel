@@ -86,45 +86,77 @@ function toggleTheme() {
 </style> -->
 <template>
   <v-app>
-                    <!-- Menu lateral fixo -->
-                    <v-navigation-drawer app dark permanent color="#2c3e50">
-                        <v-list-item class="pa-4 text-center">
-                            <v-list-item-title class="text-h6 font-weight-bold">
-                                Meu Aluguel
-                            </v-list-item-title>
-                        </v-list-item>
-                        <v-divider></v-divider>
-                        <v-list nav>
-                            <v-list-item v-for="(item, index) in menuItems" :key="index" :prepend-icon="item.icon" :to="item.to"
-          :disabled="item.disable" class="ma-1 text-white" rounded="xl">
+    <!-- Menu lateral fixo -->
+    <v-navigation-drawer
+      app
+      dark
+      permanent
+      color="#2c3e50"
+    >
+      <v-list-item class="pa-4 text-center">
+        <v-list-item-title class="text-h6 font-weight-bold">
+          Meu Aluguel
+        </v-list-item-title>
+      </v-list-item>
+      <v-divider />
+      <v-list nav>
+        <v-list-item
+          v-for="(item, index) in menuItems"
+          :key="index"
+          :prepend-icon="item.icon"
+          :to="item.to"
+          :disabled="item.disable"
+          class="ma-1 text-white"
+          rounded="xl"
+        >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
-                        </v-list>
-                        <template v-slot:append>
-                            <v-divider></v-divider>
-                            <v-list nav>
-                                <v-list-item prepend-icon="mdi-cog" title="Configuração" value="settings"></v-list-item>
-                                <v-list-item prepend-icon="mdi-logout" title="Sair" value="logout"></v-list-item>
-                            </v-list>
-                            <div class="pa-4 text-center">
-                                <v-avatar size="48" class="mb-2">
-                                    <v-img src="https://placehold.co/48x48/CCCCCC/333333?text=MJ"></v-img>
-                                </v-avatar>
-                                <div class="text-subtitle-1 text-white">Maria Joana</div>
-                                <div class="text-caption text-grey-lighten-2">Administrador</div>
-                            </div>
-                        </template>
-                    </v-navigation-drawer>
-                    <v-app-bar app dark color="#2c3e50">
-                        <v-toolbar-title>Gestão de Contratos</v-toolbar-title>
-                        <v-spacer></v-spacer>
-                        <!-- Adicione aqui um ícone de perfil de usuário ou notificações se necessário -->
-                    </v-app-bar>
-                    <v-main>
-                        <router-view></router-view>
-                    </v-main>
-                </v-app>
+      </v-list>
+      <template #append>
+        <v-divider />
+        <v-list nav>
+          <v-list-item
+            prepend-icon="mdi-cog"
+            title="Configuração"
+            value="settings"
+          />
+          <v-list-item
+            prepend-icon="mdi-logout"
+            title="Sair"
+            value="logout"
+          />
+        </v-list>
+        <div class="pa-4 text-center">
+          <v-avatar
+            size="48"
+            class="mb-2"
+          >
+            <v-img src="https://placehold.co/48x48/CCCCCC/333333?text=MJ" />
+          </v-avatar>
+          <div class="text-subtitle-1 text-white">
+            Maria Joana
+          </div>
+          <div class="text-caption text-grey-lighten-2">
+            Administrador
+          </div>
+        </div>
+      </template>
+    </v-navigation-drawer>
+    <v-app-bar
+      app
+      dark
+      color="#2c3e50"
+    >
+      <v-toolbar-title>Gestão de Contratos</v-toolbar-title>
+      <v-spacer />
+      <!-- Adicionar um ícone de pnotificações se necessário -->
+    </v-app-bar>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
+
 <script setup>
 import { ref } from 'vue'
 import { useTheme } from 'vuetify'
