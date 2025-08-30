@@ -3,6 +3,25 @@
     <v-btn
       class="mx-1"
       variant="outlined"
+      density="comfortable"
+      size="small"
+      color="blue"
+      icon="mdi-autorenew"
+      @click="openReniewDialog"
+    >
+      <v-icon variant="text">
+        mdi-autorenew
+      </v-icon>
+      <v-tooltip
+        activator="parent"
+        location="bottom"
+      >
+        Renovar
+      </v-tooltip>
+    </v-btn>
+    <v-btn
+      class="mx-1"
+      variant="outlined"
       icon
       density="comfortable"
       size="small"
@@ -45,26 +64,6 @@
       variant="outlined"
       density="comfortable"
       size="small"
-      color="blue"
-      icon="mdi-autorenew"
-      @click="openReniewDialog"
-    >
-      <v-icon variant="text">
-        mdi-autorenew
-      </v-icon>
-      <v-tooltip
-        activator="parent"
-        location="bottom"
-      >
-        Renovar
-      </v-tooltip>
-    </v-btn>
-
-    <v-btn
-      class="mx-1"
-      variant="outlined"
-      density="comfortable"
-      size="small"
       color="red"
       icon="mdi-close"
       @click="cancelContract"
@@ -80,9 +79,9 @@
       </v-tooltip>
     </v-btn>
     <contratos-renew-dialog
-      :dialog="dialogRenew"
+      v-model="dialogRenew"
       :contrato="item"
-      @close-dialog="dialogRenew = false"
+      @renewed="onContractRenewed"
     />
   </div>
 </template>
@@ -111,5 +110,11 @@ function changeContract() {
 
 function cancelContract() {
   console.log('❌ Cancelar contrato:', props.item.id)
+}
+const onContractRenewed = (updatedContract) => {
+  // modal.title = 'Sucesso!'
+  // modal.message = 'Contrato renovado com sucesso!'
+  // modal.type = 'success'
+  // modal.show = true
 }
 </script>

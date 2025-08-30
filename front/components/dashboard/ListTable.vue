@@ -6,8 +6,8 @@
     <v-card-title class="d-flex align-center justify-space-between">
       Contratos
       <v-btn
-        :to="{ path: '/new' }"
-        color="secondary"
+        :to="{ path: '#' }"
+        color="primary"
         prepend-icon="mdi-plus"
         rounded="xl"
       >
@@ -26,7 +26,7 @@
       class="mt-4"
       @update:options="loadItems"
     >
-      <template #item.status="{ item }">
+      <template #[`item.status`]="{ item }">
         <v-chip
           :color="getStatusColor(item.status)"
           class="text-capitalize"
@@ -34,33 +34,13 @@
           {{ item.status }}
         </v-chip>
       </template>
-      <template #item.actions="{ item }">
-        <v-btn
-          icon
-          color="blue"
-          size="small"
-          :to="'/contracts/' + item.id"
-          class="mr-2"
-        >
-          <v-icon>mdi-pencil</v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          color="orange"
-          size="small"
-          :to="'/contracts/' + item.id"
-          class="mr-2"
-        >
-          <v-icon>mdi-eye</v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          color="red"
-          size="small"
-          @click="showDeleteConfirmation(item)"
-        >
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
+      <template #[`item.property`]="{ item }">
+        {{ item.property.address }}{{ item.property.complement ? ', ' + item.property.complement : '' }}
+      </template>
+      <template #[`item.actions`]="{ item }">
+        <contratos-action-buttons
+          :item="item"
+        />
       </template>
     </v-data-table-server>
     <div
@@ -77,13 +57,13 @@ import type { ContractType } from '~/types/contracts'
 
 const contractStore = reactive({
   contracts: [
-    { id: 1, inquilino: 'João Silva', imovel: 'Apto, 2001', inicio: '2023-01-15', fim: '2024-01-14', monthlyRent: 1500.00, status: 'Ativo' },
-    { id: 2, inquilino: 'Maria Souza', imovel: 'Casa', inicio: '2023-03-01', fim: '2023-11-14', monthlyRent: 2200.00, status: 'Encerrado' },
-    { id: 3, inquilino: 'Carlos Lima', imovel: 'Office', inicio: '2023-05-20', fim: '2024-05-19', monthlyRent: 1850.00, status: 'Vencendo' },
-    { id: 4, inquilino: 'Ana Clara', imovel: 'Loja, 32', inicio: '2024-01-01', fim: '2025-01-01', monthlyRent: 3000.00, status: 'Ativo' },
-    { id: 5, inquilino: 'Pedro Martins', imovel: 'Apartamento', inicio: '2023-09-10', fim: '2024-09-09', monthlyRent: 1900.00, status: 'Ativo' },
-    { id: 6, inquilino: 'Juliana Costa', imovel: 'Studio', inicio: '2024-03-01', fim: '2025-02-28', monthlyRent: 1200.00, status: 'Vencendo' },
-    { id: 7, inquilino: 'Rafael Gomes', imovel: 'Casa de Campo', inicio: '2022-07-01', fim: '2023-06-30', monthlyRent: 2500.00, status: 'Encerrado' },
+    { id: 1, renterName: { name: 'João Silva' }, property: { address: 'Apto, 2001', complement: '' }, start_date: '2023-01-15', end_date: '2024-01-14', monthlyRent: 1500.00, status: 'Ativo' },
+    { id: 2, renterName: { name: 'Maria Souza' }, property: { address: 'Casa', complement: 'A' }, start_date: '2023-03-01', end_date: '2023-11-14', monthlyRent: 2200.00, status: 'Encerrado' },
+    { id: 3, renterName: { name: 'Carlos Lima' }, property: { address: 'Office', complement: '' }, start_date: '2023-05-20', end_date: '2024-05-19', monthlyRent: 1850.00, status: 'Vencendo' },
+    { id: 4, renterName: { name: 'Ana Maria' }, property: { address: 'Loja, 32', complement: '' }, start_date: '2024-01-01', end_date: '2025-01-01', monthlyRent: 3000.00, status: 'Ativo' },
+    { id: 5, renterName: { name: 'Pedro Martins' }, property: { address: 'Apartamento', complement: '' }, start_date: '2023-09-10', end_date: '2024-09-09', monthlyRent: 1900.00, status: 'Ativo' },
+    { id: 6, renterName: { name: 'Juliana Costa' }, property: { address: 'Studio', complement: '' }, start_date: '2024-03-01', end_date: '2025-02-28', monthlyRent: 1200.00, status: 'Vencendo' },
+    { id: 7, renterName: { name: 'Rafael Gomes' }, property: { address: 'Casa de Campo', complement: '' }, start_date: '2022-07-01', end_date: '2023-06-30', monthlyRent: 2500.00, status: 'Encerrado' },
   ],
 
   nextId: 8,
@@ -96,10 +76,10 @@ const router = useRouter()
 // Configuração da tabela
 const itemsPerPage = ref(10)
 const headers = ref([
-  { title: 'Inquilino', key: 'inquilino' },
-  { title: 'Imóvel', key: 'imovel' },
-  { title: 'Início', key: 'inicio' },
-  { title: 'Fim', key: 'fim' },
+  { title: 'Inquilino', key: 'renterName.name' },
+  { title: 'Imóvel', key: 'property' },
+  { title: 'Início', key: 'start_date' },
+  { title: 'Fim', key: 'end_date' },
   { title: 'Status', key: 'status' },
   { title: 'Ações', key: 'actions', sortable: false, align: 'center', width: '170' },
 ])

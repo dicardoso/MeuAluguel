@@ -4,10 +4,15 @@
     class="mb-6"
   >
     <v-col
-      cols="12" sm="6" md="3"
+      cols="12"
+      sm="6"
+      md="3"
     >
       <v-card
-        id="1" class="pa-4 text-white text-center" rounded="xl" color="#5cb85c"
+        id="1"
+        class="pa-4 text-white text-center"
+        rounded="xl"
+        color="#5cb85c"
       >
         <v-icon
           size="48"
