@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@pinia/nuxt',
+    '@nuxt/eslint',
   ],
   plugins: ['@/plugins/vuetify', '@/plugins/maska'],
   css: ['vuetify/styles', '@/assets/styles/main.scss'],

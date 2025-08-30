@@ -50,6 +50,11 @@ export default defineNuxtPlugin((nuxtApp) => {
       locale: 'pt',
       messages: { pt },
     },
+    date: {
+      locale: {
+        pt: 'pt-BR',
+      },
+    },
     theme: {
       defaultTheme: 'light',
       themes: {

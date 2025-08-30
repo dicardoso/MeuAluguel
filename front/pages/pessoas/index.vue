@@ -29,7 +29,6 @@ const reloadTable = ref(false)
 const editItem = ref({})
 
 function openDialog(item = {}) {
-  console.log(item)
   dialog.value = true
   editItem.value = item
 }

@@ -1,15 +1,34 @@
 <template>
-    <v-row>
-      <v-col cols="12" sm="6" md="3" v-for="(item, i) in stats" :key="i">
-        <v-card class="pa-4 text-center d-flex align-center justify-space-around" :color="item.color" elevation="2">
-          <v-icon size="50">{{ item.icon }}</v-icon>
-          <div class="">
-            <p class="text-subtitle-1">{{ item.title }}</p>
-            <h3 class="mt-2 font-weight-black">{{ item.value }}</h3>
-          </div>
+  <v-row dense class="mb-6">
+    <v-col cols="12" sm="6" md="3">
+      <v-card class="pa-4 text-white text-center" rounded="xl" color="#5cb85c">
+        <v-icon size="48" class="mb-2">mdi-file-document-multiple</v-icon>
+        <div class="text-h4 font-weight-bold">35</div>
+        <div class="text-subtitle-1">Contratos Ativos</div>
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="6" md="3">
+        <v-card class="pa-4 text-white text-center" rounded="xl" color="#f0ad4e">
+            <v-icon size="48" class="mb-2">mdi-calendar-alert</v-icon>
+            <div class="text-h4 font-weight-bold">5</div>
+            <div class="text-subtitle-1">Contratos Vencendo</div>
         </v-card>
-      </v-col>
-    </v-row>
+    </v-col>
+    <v-col cols="12" sm="6" md="3">
+        <v-card class="pa-4 text-white text-center" rounded="xl" color="#1c75bc">
+            <v-icon size="48" class="mb-2">mdi-account-group</v-icon>
+            <div class="text-h4 font-weight-bold">50</div>
+            <div class="text-subtitle-1">Inquilinos Cadastrados</div>
+        </v-card>
+    </v-col>
+    <v-col cols="12" sm="6" md="3">
+        <v-card class="pa-4 text-white text-center" rounded="xl" color="#1c75bc">
+            <v-icon size="48" class="mb-2">mdi-home-city</v-icon>
+            <div class="text-h4 font-weight-bold">12</div>
+            <div class="text-subtitle-1">Total de Imóveis</div>
+        </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script setup lang="ts">
