@@ -1,22 +1,5 @@
 <template>
   <v-container fluid>
-    <v-row class="justify-space-between mb-2">
-      <div>
-        <span class="text-h5">Lista de Contratos</span>
-      </div>
-      <div
-        cols="3"
-        class="align-content-end"
-      >
-        <v-btn
-          color="primary"
-          prepend-icon="mdi-account-plus-outline"
-          @click="openDialog()"
-        >
-          Adicionar Contrato
-        </v-btn>
-      </div>
-    </v-row>
     <v-row>
       <contratos-list-table
         :reload-table="reloadTable"

@@ -94,7 +94,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useUserService } from '@/services/users'
 
 const { createUser, updateUser } = useUserService()
@@ -156,13 +156,13 @@ function clear() {
 }
 function submit() {
   if (form.value.id) {
-    updateUser(form.value.id, form.value).then(({ data }) => {
+    updateUser(form.value.id, form.value).then(() => {
       closeDialog()
       emit('reload-table')
     })
   }
   else {
-    createUser(form.value).then(({ data }) => {
+    createUser(form.value).then(() => {
       closeDialog()
       emit('reload-table')
     })
