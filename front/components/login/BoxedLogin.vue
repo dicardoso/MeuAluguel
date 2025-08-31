@@ -19,20 +19,21 @@
         <LoginForm />
         <h6 class="text-subtitle-1 text-grey100 d-flex justify-center align-center mt-3">
           Novo usuário?
-          <v-btn
-            class="px-2 text-primary text-body-1 font-weight-medium"
+          <span
+            class="px-2 text-primary text-body-1 font-weight-medium cursor-pointer"
             height="auto"
-            disabled
-            to="/auth/register"
-            variant="plain"
+            variant="text"
+            @click="showRegisterModal = true"
           >
             Criar uma conta
-          </v-btn>
+          </span>
         </h6>
       </v-card-item>
     </v-card>
+    <login-register-dialog v-model="showRegisterModal" />
   </v-container>
 </template>
 
 <script setup lang="ts">
+const showRegisterModal = ref(false)
 </script>
