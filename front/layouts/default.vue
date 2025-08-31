@@ -3,8 +3,9 @@
     <!-- Menu lateral fixo -->
     <v-navigation-drawer
       app
+      v-model="drawer"
+      :permanent="$vuetify.display.mdAndUp"
       dark
-      permanent
       color="#2c3e50"
     >
       <v-list-item class="pa-4 text-center">
@@ -62,7 +63,8 @@
       dark
       color="#2c3e50"
     >
-      <v-toolbar-title>Gestão de Contratos</v-toolbar-title>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-md-none"></v-app-bar-nav-icon>
+      <v-toolbar-title v-if="$vuetify.display.mdAndDown">Meu Aluguel</v-toolbar-title>
       <v-spacer />
       <!-- Adicionar um ícone de pnotificações se necessário -->
     </v-app-bar>
@@ -76,6 +78,7 @@
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
+const drawer = ref(false)
 
 const menuItems = [
   { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', to: '/dashboard', disable: false },

@@ -74,7 +74,7 @@ const itemToDelete = ref<ContractType | null>(null)
 const router = useRouter()
 
 // Configuração da tabela
-const itemsPerPage = ref(10)
+const itemsPerPage = ref(5)
 const headers = ref([
   { title: 'Inquilino', key: 'renterName.name' },
   { title: 'Imóvel', key: 'property' },

@@ -38,7 +38,9 @@ const defaults = {
     VTextField: { variant: 'outlined', rounded: 'xl' },
     VSelect: { variant: 'outlined' },
     VAutocomplete: { variant: 'outlined' },
-    VCardTitle: { class: 'py-4 px-6' },
+    VDialog: {
+      VCardTitle: { class: 'py-4 px-6' },
+    },
     VCardActions: { class: 'py-4 px-6',
       VBtn: { rounded: 'xl', variant: 'outlined' },
     },
