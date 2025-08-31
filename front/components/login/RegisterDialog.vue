@@ -12,7 +12,7 @@
         Criar uma Conta
       </v-card-title>
       <v-card-text>
-        <v-form @submit.prevent="register">
+        <v-form @submit.prevent="createUser">
           <v-text-field
             v-model="form.name"
             label="Nome Completo"
@@ -102,6 +102,7 @@
 
 <script setup>
 import { useAuthService } from '~/services/auth'
+
 const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
   modelValue: {
@@ -129,7 +130,7 @@ const form = reactive({
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
 
-const register = () => {
+const createUser = () => {
   if (form.password !== form.confirmPassword) {
     alert('As senhas não coincidem.')
     return
