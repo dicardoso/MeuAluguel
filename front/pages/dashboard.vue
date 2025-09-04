@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ContractsList from '~/components/dashboard/ContractsList.vue'
 import GeneralInfo from '~/components/dashboard/GeneralInfo.vue'
 import ListTable from '~/components/dashboard/ListTable.vue'
 
@@ -11,9 +12,9 @@ const stats = [
 </script>
 
 <template>
-  <v-container fluid>
+  <v-container fluid class="h-100">
     <general-info />
 
-    <list-table />
+    <contracts-list />
   </v-container>
 </template>

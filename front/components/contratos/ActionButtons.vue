@@ -5,7 +5,7 @@
       variant="outlined"
       density="comfortable"
       size="small"
-      color="blue"
+      color="green"
       icon="mdi-autorenew"
       @click="openReniewDialog"
     >
@@ -45,7 +45,7 @@
       icon
       density="comfortable"
       size="small"
-      color="orange"
+      color="blue"
       @click="changeContract"
     >
       <v-icon variant="text">

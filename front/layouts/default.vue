@@ -2,8 +2,8 @@
   <v-app>
     <!-- Menu lateral fixo -->
     <v-navigation-drawer
-      app
       v-model="drawer"
+      app
       :permanent="$vuetify.display.mdAndUp"
       dark
       color="#2c3e50"
@@ -63,12 +63,17 @@
       dark
       color="#2c3e50"
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="d-md-none"></v-app-bar-nav-icon>
-      <v-toolbar-title v-if="$vuetify.display.mdAndDown">Meu Aluguel</v-toolbar-title>
+      <v-app-bar-nav-icon
+        class="d-md-none"
+        @click.stop="drawer = !drawer"
+      />
+      <v-toolbar-title v-if="$vuetify.display.mdAndDown">
+        Meu Aluguel
+      </v-toolbar-title>
       <v-spacer />
       <!-- Adicionar um ícone de pnotificações se necessário -->
     </v-app-bar>
-    <v-main>
+    <v-main class="h-100">
       <router-view />
     </v-main>
   </v-app>
